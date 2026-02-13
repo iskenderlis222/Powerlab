@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPower - Whey Protein Gold Standard</title>
+    <style>
+        :root {
+            --primary: #ff4d00;
+            --dark: #111;
+            --light: #f4f4f4;
+            --white: #ffffff;
+            --gray: #888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--white); color: var(--dark); }
+
+        /* Naviqasiya */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: var(--dark);
+            color: white;
+            position: sticky; top: 0; z-index: 1000;
+        }
+        .logo span { color: var(--primary); }
+        .menu-icon { cursor: pointer; display: flex; flex-direction: column; gap: 5px; }
+        .menu-icon span { display: block; width: 25px; height: 3px; background: white; }
+
+        /* Məhsul Detalları Bölməsi */
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 50px 8%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-image img {
+            width: 550px; height: 450px;
+            border-radius: 15px;
+            box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+        }
+
+        .product-info h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .rating { color: #ffcc00; margin-bottom: 20px; }
+        .price { font-size: 1.8rem; color: var(--primary); font-weight: bold; margin-bottom: 20px; }
+        
+        .description { color: var(--gray); margin-bottom: 30px; line-height: 1.8; }
+
+        /* Seçimlər */
+        .options { margin-bottom: 30px; }
+        .options h4 { margin-bottom: 10px; }
+        .size-chips { display: flex; gap: 10px; }
+        .chip {
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .chip.active, .chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Düymələr */
+        .action-btns { display: flex; gap: 15px; }
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            flex: 1;
+            transition: 0.3s;
+        }
+        .info-box h3 { 
+        font-size: 1.5rem; margin-bottom: 20px; color: var(--dark);
+        display: flex; align-items: center; gap: 10px;
+        }
+        .info-box h3::before { content: ''; width: 4px; height: 20px; background: var(--primary); display: inline-block;
+        }
+        .info-box p, .info-box li { color: var(--gray); font-size: 1rem; margin-bottom: 10px; 
+        }
+        .info-box ul { list-style: none; 
+        }
+        .info-box ul li::before { content: '✓'; color: var(--primary); font-weight: bold; margin-right: 10px; }
+        }
+        .info-sections { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px;   
+        }
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; 
+        }
+        .info-boximpt h3 { 
+        font-size: 1.5rem; margin-bottom: 20px; color: var(--dark);
+        display: flex; align-items: center; gap: 10px;
+        }
+        .info-boximpt h3::before { content: ''; width: 4px; height: 20px; background: var(--primary); display: inline-block;
+        }
+        .info-boximpt p, .info-boximpt li { color: var(--gray); font-size: 1rem; margin-bottom: 10px; 
+        }
+        .info-boximpt ul { list-style: none; 
+        }
+        .info-boximpt ul li::before { color: var(--primary); font-weight: bold; margin-right: 10px; 
+            
+            
+        }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-outline { background: transparent; border: 2px solid var(--dark); }
+        .btn:hover { transform: translateY(-3px); opacity: 0.9; }
+
+        /* Nutrition Table */
+        .nutrition-table {
+            margin-top: 50px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: 10px;
+        }
+        .nutrition-table table { width: 100%; border-collapse: collapse; }
+        .nutrition-table th, .nutrition-table td {
+            text-align: left;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Footer */
+        footer { background: var(--dark); color: white; padding: 40px 8%; margin-top: 50px; }
+        .reg-form { display: flex; gap: 10px; margin-top: 15px; }
+        .reg-form input { padding: 12px; border-radius: 5px; border: none; flex: 1; }
+
+        @media (max-width: 768px) {
+            .product-container { grid-template-columns: 1fr; padding: 20px 5%; }
+            .product-info h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="menu-icon"><span></span><span></span><span></span></div>
+        <div class="logo">FIT<span>POWER</span></div>
+        <div style="width: 25px;"></div>
+    </nav>
+
+    <div class="product-container">
+        <div class="product-image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDyAl8zXUG1keEjRDc7g-nasR5ltZqoXBYlRQjATdZltqg8v7yY2F0iq5quNIgTPu2dS4&usqp=CAU" alt="Protein Powder">
+        </div>
+
+        <div class="product-info">
+            <h1>100% Whey Gold Standard</h1>
+            <div class="rating">★★★★★ <span style="color: var(--gray); font-size: 0.9rem;">(120 Müştəri rəyi)</span></div>
+            <div class="price">125.00 AZN</div>
+            
+            <p class="description">
+                Dünyanın ən çox satılan protein tozu! Hər porsiyada 24 qram yüksək keyfiyyətli zülal, 5.5 qram BCAA və aşağı şəkər tərkibi ilə əzələ inkişafınızı sürətləndirin.
+            </p>
+
+            <div class="options">
+                <h4>Dad seçimi:</h4>
+                <select style="padding: 10px; width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+                    <option>Şokoladlı Double Rich</option>
+                    <option>Çiyələkli</option>
+                </select>
+            </div>
+
+            <div class="options">
+                <h4>Çəki:</h4>
+                <div class="size-chips">
+                    <div class="chip">900g</div>
+                    <div class="chip active">2.27kg</div>
+                    <div class="chip">4.5kg</div>
+                </div>
+            </div>
+
+            <div class="action-btns">
+                <button class="btn btn-primary">SƏBƏTƏ AT</button>
+                <button class="btn btn-outline"><a href="sebett.html">İNDİ AL</a></button>
+            </div>
+            
+            <div class="nutrition-table">
+                <h3>Qida Dəyərləri (1 porsiya)</h3>
+                
+                <table>
+                    <tr><td>Protein</td><td>24g</td></tr>
+                    <tr><td>Kalori</td><td>120 kcal</td></tr>
+                    <tr><td>Şəkər</td><td>3g</td></tr>      
+                    <tr><td>Kreatin</td><td>1g</td></tr>                    
+                    <tr><td>Yağ</td><td>1g</td></tr>
+                    <tr><td>Karbohidrat</td><td>3g</td></tr>
+                    <tr><td>BCAA</td><td>5.5g</td></tr>
+                </table>
+            </div>
+        </div>
+      
+      <div class="info-box">
+                    <h3>Məhsul Haqqında</h3>
+                    <p>
+                        Whey Gold Standard dünyada ən çox üstünlük verilən protein tozudur. Tərkibindəki yüksək keyfiyyətli zülal izolyatları sayəsində əzələləriniz məşqdən sonra dərhal qidalanır.
+                    </p>
+                    <ul>
+                        <li>Hər porsiyada 24 qram təmiz zülal</li>
+                        <li>Yalnız 1 qram yağ və az miqdarda şəkər</li>
+                        <li>Həzmi asanlaşdıran fermentlər</li>
+                        <li>Məşq sonrası bərpada maksimum effekt</li>
+                    </ul>
+                </div>
+
+                <div class="info-boximpt">
+                    <h3>İstifadə Qaydası</h3>
+                    <p>Maksimum nəticə üçün tövsiyə olunan qaydada istifadə edin:</p>
+                    
+                    <ul>
+                        <li>1. Hər porsiyada 24 qram təmiz zülal</li>
+                        <li>2. Yalnız 1 qram yağ və az miqdarda şəkər</li>
+                        <li>3. Həzmi asanlaşdıran fermentlər</li>
+                        <li>4. Məşq sonrası bərpada maksimum effekt</li>
+                    </ul>
+                </div>
+      
+    </div>
+
+    <footer>
+        <div style="text-align: center;">
+            <h3>Yeni Kampaniyalardan Xəbərdar Ol</h3>
+            <form class="reg-form" id="regForm" style="max-width: 500px; margin: 0 auto;">
+                <input type="email" placeholder="E-poçtunuz" required>
+                <button type="submit" class="btn btn-primary" style="flex: 0;">Qeydiyyat</button>
+            </form>
+            <p style="margin-top: 20px; color: var(--gray);">&copy; 2026 FitPower Azerbaijan. Bütün hüquqlar qorunur.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Ölçü seçimi üçün sadə interaktivlik
+        const chips = document.querySelectorAll('.chip');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+            });
+        });
+
+        document.getElementById('regForm').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Məlumatlarınız qeydə alındı!');
+        };
+    </script>
+</body>
+</html>
